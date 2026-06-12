@@ -1,0 +1,24 @@
+{
+  "name": "blockchain-equipment-management-system",
+  "version": "1.0.0",
+  "description": "A blockchain-based Equipment Management System (EMS) developed as a decentralized application (DApp) for managing equipment borrowing and returning activities in universities, labs, and event management environments.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izzyvissy/blockchain-equipment-management-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/izzyvissy/blockchain-equipment-management-system/issues"
+  },
+  "homepage": "https://github.com/izzyvissy/blockchain-equipment-management-system#readme"
+}

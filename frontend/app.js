@@ -42,10 +42,13 @@ async function connectWallet() {
 // 🔹 2. Attach Click Listeners to Existing Table Buttons
 function attachButtonListeners() {
   const rows = document.querySelectorAll('tbody tr');
-  rows.forEach((row, index) => {
-    const equipmentId = index + 1; // Maps to: 1=Basketball, 2=Badminton, 3=Volleyball
+  rows.forEach((row) => {
+    const equipmentId = Number(row.dataset.id);
+
     const statusSpan = row.querySelector('.status');
-    const borrowerCell = row.querySelector('td:nth-child(3)');
+
+    // Borrower is now the 5th column
+    const borrowerCell = row.querySelector('td:nth-child(5)');
     
     const requestBtn = row.querySelector('.request-btn');
     const approveBtn = row.querySelector('.approve-btn');
