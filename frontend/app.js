@@ -1,5 +1,5 @@
 // 🔴 Replace this with your deployed EMS contract address!
-const CONTRACT_ADDRESS = "PASTE_YOUR_DEPLOYED_ADDRESS_HERE";
+const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 // ABI matching your Equipment Management System functions
 // ⚠️ Update this after compiling your Solidity contract
