@@ -72,6 +72,29 @@ function attachButtonListeners() {
   });
 }
 
+// 2.1 Button change and wait 
+function updateButtons(row, status) {
+  const requestBtn = row.querySelector(".request-btn");
+  const approveBtn = row.querySelector(".approve-btn");
+  const returnBtn = row.querySelector(".return-btn");
+
+  requestBtn && (requestBtn.style.display = "none");
+  approveBtn && (approveBtn.style.display = "none");
+  returnBtn && (returnBtn.style.display = "none");
+
+  if (status === "Available") {
+    requestBtn.style.display = "inline-block";
+  }
+
+  if (status === "Requested") {
+    approveBtn.style.display = "inline-block";
+  }
+
+  if (status === "Borrowed") {
+    returnBtn.style.display = "inline-block";
+  }
+}
+
 // 🔹 3. Execute Blockchain Transaction & Update UI
 async function executeTx(functionName, equipmentId, statusEl, borrowerEl, btn, newStatusText, bgClass, colorHex) {
   if (!contract) return alert("Please connect your wallet first!");
@@ -88,9 +111,6 @@ async function executeTx(functionName, equipmentId, statusEl, borrowerEl, btn, n
 
     // ✅ Update UI after success
     statusEl.className = `status ${functionName === 'requestBorrow' ? 'requested' : functionName === 'approveRequest' ? 'borrowed' : 'available'}`;
-    statusEl.style.background = bgClass;
-    statusEl.style.color = colorHex;
-    statusEl.innerText = newStatusText;
 
     if (functionName === 'requestBorrow') {
       borrowerEl.innerText = await signer.getAddress();
@@ -122,3 +142,23 @@ function addHistoryLog(message) {
 
 // 🔹 Event Listeners
 connectBtn.addEventListener('click', connectWallet);
+
+// 5. refresh function
+async function refreshRow(equipmentId, row) {
+  const data = await contract.getEquipment(equipmentId);
+
+  const statusSpan = row.querySelector(".status");
+  const borrowerCell = row.querySelector("td:nth-child(5)");
+
+  const statusText = data[1];
+
+  statusSpan.innerText = statusText;
+
+  if (data[2] === ethers.ZeroAddress) {
+    borrowerCell.innerText = "-";
+  } else {
+    borrowerCell.innerText = data[2];
+  }
+
+  updateButtons(row, statusText);
+}
