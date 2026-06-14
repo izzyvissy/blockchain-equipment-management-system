@@ -27,6 +27,11 @@ async function connectWallet() {
 
     // Update button UI
     connectBtn.innerText = ` Connected: ${accounts[0].slice(0,6)}...${accounts[0].slice(-4)}`;
+    const walletStatus = document.getElementById('walletStatus');
+    walletStatus.innerHTML = `
+    Wallet Status: <strong>Connected</strong><br>
+    `;
+    walletStatus.style.color = "#16a34a";
     connectBtn.style.background = "#10b981";
     connectBtn.style.cursor = "default";
     
